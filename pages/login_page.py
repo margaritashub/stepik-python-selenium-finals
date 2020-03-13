@@ -1,5 +1,5 @@
 from .base_page import BasePage
-
+from selenium.common.exceptions import NoAlertPresentException
 
 class LoginPage(BasePage):
     def should_be_login_page(self):
@@ -22,3 +22,8 @@ class LoginPage(BasePage):
         # реализуйте проверку, что есть форма регистрации на странице
         assert self.is_element_present(*LoginPageLocators.REGISTER_FORM), "Register form is not presented"
         assert True
+
+    def go_to_login_page(self):
+        link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
+        link.click()
+        # return LoginPage(browser=self.browser, url=self.browser.current_url)
