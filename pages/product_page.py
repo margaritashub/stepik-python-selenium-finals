@@ -1,3 +1,6 @@
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from .base_page import BasePage
 from .locators import ProductPageLocators
 
@@ -40,6 +43,21 @@ class ProductPage(BasePage):
         assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGES), "Message of Success added product in " \
                                                                                "basket not found "
 
+    def is_not_element_present(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return True
+
+    def is_disappeared(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout, 1, TimeoutException). \
+                    until_not(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return False
+
+            return True
+        return False
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGES), "Wrong show success message"
 
@@ -47,9 +65,4 @@ class ProductPage(BasePage):
         assert self.is_element_present(*ProductPageLocators.BTN_ADD_TO_BASKET), "Button 'Add to basket' is not " \
                                                                                 "presented "
 
-    def check_success_message(self):
-        msg_lst = self.browser.find_elements(*ProductPageLocators.SUCCESS_MESSAGES)
-        assert len(msg_lst) == 3, "Success message not found"
 
-        assert self.product_name == msg_lst[0].text, "Wrong name product added to basket"
-        assert self.product_price == msg_lst[2].text, "Wrong price product added to basket"
