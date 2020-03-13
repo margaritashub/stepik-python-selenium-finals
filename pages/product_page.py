@@ -55,14 +55,9 @@ class ProductPage(BasePage):
                     until_not(EC.presence_of_element_located((how, what)))
         except TimeoutException:
             return False
-
-            return True
-        return False
+        return True
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGES), "Wrong show success message"
 
-    def should_be_add_button(self):
-        assert self.is_element_present(*ProductPageLocators.BTN_ADD_TO_BASKET), "Button 'Add to basket' is not " \
-                                                                                "presented "
 
 
