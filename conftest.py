@@ -2,7 +2,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from datetime import datetime
-import allure
+
 
 def pytest_addoption(parser):
     parser.addoption('--language', action='store', default='en', help='Chose language')

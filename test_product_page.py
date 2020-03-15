@@ -4,7 +4,7 @@ import pytest
 from selenium.webdriver.common.by import By
 from pages.login_page import LoginPage
 from pages.product_page import ProductPage
-from pages.basket_Page import BasketPage
+from pages.basket_page import BasketPage
 import time
 
 @pytest.mark.need_review
@@ -54,14 +54,14 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.should_be_empty_basket()
 
-
+@pytest.mark.need_review_custom_scenarios
 class TestUserAddToBasketFromProductPage():
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
         login_url = 'http://selenium1py.pythonanywhere.com/accounts/login/'
 
         rand_number = random.randint(1000000000, 10000000000)
-        reg_email = f"test_user_{str(time.time())}_{rand_number}@ran.dom"
+        reg_email = f"user_{str(time.time())}_{rand_number}@ran.dom"
         reg_pwd = f"pw{rand_number}"
 
         page = LoginPage(browser, login_url)

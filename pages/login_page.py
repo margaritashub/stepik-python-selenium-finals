@@ -40,3 +40,6 @@ class LoginPage(BasePage):
         repeat_pwd.send_keys(password)
         register_btn = self.browser.find_element(*LoginPageLocators.REGISTER_BTN)
         register_btn.click()
+
+    def authorization (self, email, password):
+    input

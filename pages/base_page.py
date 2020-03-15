@@ -48,6 +48,15 @@ class BasePage():
         assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
                                                                  "unauthorised user"
 
-    def go_to_basket_page(self):
+    def go_to_basket(self):
         link = self.browser.find_element(*BasePageLocators.BTN_GO_TO_BASKET)
         link.click()
+
+    def go_to_books_catalogue(self):
+        link = self.browser.find_element(*BasePageLocators.BOOKS_CAT)
+        link.click()
+
+    def logout(self):
+        link = self.browser.find_element(*BasePageLocators.LOGOUT_LINK)
+        link.click()
+

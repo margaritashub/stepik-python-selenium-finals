@@ -1,4 +1,4 @@
-from  pages.base_page import BasePage
+from pages.base_page import BasePage
 from pages.locators import BasketPageLocators
 
 
@@ -11,9 +11,14 @@ class BasketPage(BasePage):
         assert self.is_not_element_present(*BasketPageLocators.GOODS_IN_BASKET)
 
     def should_be_msg_basket_is_empty(self):
-        assert self.browser.find_element(*BasketPageLocators.BASKET_IS_EMPTY).text == "Your basket is empty. " \
-                                                                                          "Continue shopping"
+        assert self.browser.find_element(*BasketPageLocators.BASKET_IS_EMPTY)
 
     def is_not_element_present(self, param):
         pass
 
+    def delete_goods(self):
+        number = self.browser.find_element(*BasketPageLocators.QTY_INPUT)
+        number.clear()
+        number.send_keys(0)
+        btn = self.browser.find_element(*BasketPageLocators.QTY_BTN)
+        btn.click()
