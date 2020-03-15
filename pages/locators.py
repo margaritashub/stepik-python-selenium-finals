@@ -19,10 +19,11 @@ class ProductPageLocators:
     PRODUCT_DESCRIPTION = (By.CSS_SELECTOR, "#product_description+p")
     SUCCESS_MESSAGES = (By.CSS_SELECTOR, ".alertinner strong")
 class BasePageLocators():
+    BTN_GO_TO_BASKET = (By.CSS_SELECTOR, '.btn-group a.btn-default')
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
     USER_ICON = (By.CSS_SELECTOR, ".icon-user")
 class BasketPageLocators:
-    BTN_GO_TO_BASKET = (By.CSS_SELECTOR, '.btn-group a.btn-default')
+
     GOODS_IN_BASKET = (By.CSS_SELECTOR, "#content_inner div.basket-title div.row")
     BASKET_IS_EMPTY = (By.CSS_SELECTOR, "#content_inner p")

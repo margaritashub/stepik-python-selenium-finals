@@ -1,8 +1,9 @@
 from selenium.common.exceptions import NoSuchElementException
 from .locators import BasePageLocators
-
+from .locators import BasketPageLocators
 from selenium.common.exceptions import NoAlertPresentException
 import math
+
 class BasePage():
     def __init__(self, browser, url):
         self.browser = browser
@@ -45,4 +46,8 @@ class BasePage():
 
     def should_be_authorized_user(self):
         assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
-                                                                 " probably unauthorised user"
+                                                                 "unauthorised user"
+
+    def go_to_basket_page(self):
+        link = self.browser.find_element(*BasePageLocators.BTN_GO_TO_BASKET)
+        link.click()

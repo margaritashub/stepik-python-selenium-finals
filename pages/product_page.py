@@ -63,4 +63,7 @@ class ProductPage(BasePage):
         assert self.is_element_present(*ProductPageLocators.BTN_ADD_TO_BASKET), "Button 'Add to basket' is not " \
                                                                                 "presented "
 
+    def check_success_message(self):
+       assert  self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGES)
+
 

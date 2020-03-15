@@ -4,13 +4,15 @@ import pytest
 from selenium.webdriver.common.by import By
 from pages.login_page import LoginPage
 from pages.product_page import ProductPage
+from pages.basket_Page import BasketPage
 import time
 
-#def test_guest_can_add_product_to_basket(browser):
-  # link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
-  # page = ProductPage(browser, link)
-  # page.open()
-  # page.add_product_to_basket()
+@pytest.mark.need_review
+def test_guest_can_add_product_to_basket(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+    page = ProductPage(browser, link)
+    page.open()
+    page.add_product_to_basket()
 
 
 @pytest.mark.xfail
@@ -42,6 +44,8 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.open()
     page.should_be_login_link()
 
+
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
@@ -65,7 +69,7 @@ class TestUserAddToBasketFromProductPage():
         page.register_new_user(reg_email, reg_pwd)
         page.should_be_authorized_user()
 
-
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
         page = ProductPage(browser, link)
