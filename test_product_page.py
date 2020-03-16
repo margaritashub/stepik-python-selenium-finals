@@ -54,7 +54,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.should_be_empty_basket()
 
-@pytest.mark.need_review_custom_scenarios
+@pytest.mark.need_review_custom_scenarios2
 class TestUserAddToBasketFromProductPage():
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
@@ -81,3 +81,4 @@ class TestUserAddToBasketFromProductPage():
         page = ProductPage(browser, link)
         page.open()
         page.should_not_be_success_message()
+

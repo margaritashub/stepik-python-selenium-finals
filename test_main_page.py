@@ -1,3 +1,4 @@
+from pages.account_page import AccountPage
 from pages.basket_page import BasketPage
 from pages.books_page import BooksPage
 from pages.main_page import MainPage
@@ -32,7 +33,7 @@ class TestLoginFromMainPage():
         login_page.should_be_login_page()
 
 
-@pytest.mark.need_review_custom_scenarios
+# @pytest.mark.need_review_custom_scenarios
 def test_guest_can_add_books_to_basket(browser):
     link = "http://selenium1py.pythonanywhere.com/"
     page = MainPage(browser, link)
@@ -47,3 +48,20 @@ def test_guest_can_add_books_to_basket(browser):
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.delete_goods()
     basket_page.should_be_msg_basket_is_empty()
+
+@pytest.mark.need_review_custom_scenarios1
+def test_user_can_add_address(browser):
+    link = "http://selenium1py.pythonanywhere.com/"
+    page = MainPage(browser, link)
+    page.open()
+    page.go_to_login_page()
+    login_page = LoginPage(browser, browser.current_url)
+    login_page.should_be_login_page()
+    login_page.authorization()
+    login_page.go_to_account_page()
+    acc_page = AccountPage(browser, browser.current_url)
+    acc_page.open()
+    acc_page.go_to_address_book()
+    acc_page.add_new_address()
+    acc_page.check_success_message()
+    acc_page.logout()

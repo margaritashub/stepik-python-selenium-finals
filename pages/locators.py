@@ -31,8 +31,9 @@ class BasePageLocators():
     BTN_GO_TO_BASKET = (By.CSS_SELECTOR, '.btn-group a.btn-default')
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     USER_ICON = (By.CSS_SELECTOR, ".icon-user")
-    BOOKS_CAT = (By.LINK_TEXT, "Books")
+    BOOKS_CAT = (By.CSS_SELECTOR, '#browse .dropdown-submenu')
     LOGOUT_LINK = (By.CSS_SELECTOR, "#logout_link")
+
 class BasketPageLocators:
 
     GOODS_IN_BASKET = (By.CSS_SELECTOR, "#content_inner div.basket-title div.row")
@@ -44,7 +45,7 @@ class BooksPageLocators:
     BOOK_TO_ADD = (By.LINK_TEXT, "Hacking Exposed Wireless")
 
 class AccountPageLocators:
-    ADDRESS_BOOK = (By.CSS_SELECTOR, '#default li:nth-child(3)')
+    ADDRESS_BOOK = (By.PARTIAL_LINK_TEXT, "Address")
     ADDRESS_ADD_BTN = (By.CLASS_NAME, 'btn-primary')
     TITLE = (By.ID, 'id_title')
     FIRST_NAME = (By.NAME, 'first_name')
@@ -57,4 +58,5 @@ class AccountPageLocators:
     HTML = (By.TAG_NAME, 'html')
     COUNTRY = (By.NAME, 'country')
     BTN_SAVE_ADR = (By.CSS_SELECTOR, '.btn-lg')
+    SUCCESS_SAVE = (By.CSS_SELECTOR, ".alert-success")
 

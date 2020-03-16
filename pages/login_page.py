@@ -41,5 +41,10 @@ class LoginPage(BasePage):
         register_btn = self.browser.find_element(*LoginPageLocators.REGISTER_BTN)
         register_btn.click()
 
-    def authorization (self, email, password):
-    input
+    def authorization (self):
+        login_email = self.browser.find_element(*LoginPageLocators.USERNAME_LOGIN)
+        login_email.send_keys("aba@am.rt")
+        password = self.browser.find_element(*LoginPageLocators.PASSWORD_LOGIN)
+        password.send_keys("areallylongpassword1")
+        submit_login = self.browser.find_element(*LoginPageLocators.BTN_LOGIN)
+        submit_login.click()
