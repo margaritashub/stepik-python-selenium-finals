@@ -17,7 +17,7 @@ class ProductPage(BasePage):
         self.should_be_add_button()
 
         self.add_product_to_basket()
-        self.solve_quiz_and_get_code()
+
         self.should_be_success()
         self.check_success_message()
 
@@ -67,4 +67,15 @@ class ProductPage(BasePage):
                                                                                 "presented "
 
     def check_success_message(self):
+        assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGES)
+
+    def add_review(self):
+        btn = self.browser.find_element(*ProductPageLocators.REVIEW_BTN)
+        btn.click()
+        self.browser.find_element(*ProductPageLocators.REVIEW_TITLE).send_keys('OCHEN HOROWO')
+        self.browser.find_element(*ProductPageLocators.REVIEW_BODY).send_keys('tolko ne rabotaet')
+        self.browser.find_element(*ProductPageLocators.FIVE_STAR_RATING).click()
+        self.browser.find_element(*ProductPageLocators.REVIEW_BTN_ADD).click()
+
+    def should_be_review_success_message(self):
         assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGES)

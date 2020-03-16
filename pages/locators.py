@@ -26,7 +26,7 @@ class ProductPageLocators:
     REVIEW_TITLE = (By.ID, "id_title")
     REVIEW_BODY = (By.ID, "id_body")
     REVIEW_BTN_ADD = (By.CSS_SELECTOR, '#add_review_form button')
-
+    FIVE_STAR_RATING = (By.CSS_SELECTOR, ".star-rating:nth-child(5)")
 class BasePageLocators():
     BTN_GO_TO_BASKET = (By.CSS_SELECTOR, '.btn-group a.btn-default')
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
