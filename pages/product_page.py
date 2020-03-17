@@ -79,3 +79,6 @@ class ProductPage(BasePage):
 
     def should_be_review_success_message(self):
         assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGES)
+
+    def should_be_normal_site_offer_alert(self):
+        assert self.is_element_present()

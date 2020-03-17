@@ -34,7 +34,7 @@ class TestLoginFromMainPage():
 
 
 # @pytest.mark.need_review_custom_scenarios
-def test_guest_can_add_books_to_basket(browser):
+def test_guest_can_add_books_to_basket_and_delete(browser):
     link = "http://selenium1py.pythonanywhere.com/"
     page = MainPage(browser, link)
     page.open()
@@ -46,10 +46,10 @@ def test_guest_can_add_books_to_basket(browser):
     product_page.should_be_success()
     product_page.go_to_basket()
     basket_page = BasketPage(browser, browser.current_url)
-    basket_page.delete_goods()
+    basket_page.set_goods_amount(0)
     basket_page.should_be_msg_basket_is_empty()
 
-@pytest.mark.need_review_custom_scenarios1
+@pytest.mark.need_review_custom_scenarios3
 def test_user_can_add_address(browser):
     link = "http://selenium1py.pythonanywhere.com/"
     page = MainPage(browser, link)
@@ -65,3 +65,18 @@ def test_user_can_add_address(browser):
     acc_page.add_new_address()
     acc_page.check_success_message()
     acc_page.logout()
+@pytest.mark.need_review_custom_scenarios4
+def test_normal_site_offer(browser):
+    link = "http://selenium1py.pythonanywhere.com/"
+    page = MainPage(browser, link)
+    page.open()
+    page.go_to_books_catalogue()
+    books_page = BooksPage(browser, browser.current_url)
+    books_page.move_to_book_page()
+    product_page = ProductPage(browser, browser.current_url)
+    product_page.add_product_to_basket()
+    product_page.should_be_success()
+    product_page.go_to_basket()
+    basket_page = BasketPage(browser, browser.current_url)
+    basket_page.set_goods_amount(3)
+    basket_page.normal_site_offer_assert()

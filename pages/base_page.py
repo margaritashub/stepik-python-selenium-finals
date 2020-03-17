@@ -7,6 +7,7 @@ class BasePage():
     def __init__(self, browser, url):
         self.browser = browser
         self.url = url
+
     def open(self):
         self.browser.get(self.url)
 
@@ -31,7 +32,7 @@ class BasePage():
 
     def should_be_authorized_user(self):
         assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
-                                                                 "unauthorised user"
+                                                                     "unauthorised user"
 
     def go_to_basket(self):
         link = self.browser.find_element(*BasePageLocators.BTN_GO_TO_BASKET)
@@ -48,3 +49,9 @@ class BasePage():
     def go_to_account_page(self):
         link = self.browser.find_element(*BasePageLocators.USER_ICON)
         link.click()
+
+    def get_text(self, how, what):
+        try:
+            return self.browser.find_element(how, what).text
+        except NoSuchElementException:
+            return None

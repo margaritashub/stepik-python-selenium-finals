@@ -27,6 +27,7 @@ class ProductPageLocators:
     REVIEW_BODY = (By.ID, "id_body")
     REVIEW_BTN_ADD = (By.CSS_SELECTOR, '#add_review_form button')
     FIVE_STAR_RATING = (By.CSS_SELECTOR, ".star-rating:nth-child(5)")
+
 class BasePageLocators():
     BTN_GO_TO_BASKET = (By.CSS_SELECTOR, '.btn-group a.btn-default')
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
@@ -40,7 +41,7 @@ class BasketPageLocators:
     BASKET_IS_EMPTY = (By.CSS_SELECTOR, "#content_inner p")
     QTY_INPUT = (By.NAME, "form-0-quantity")
     QTY_BTN = (By.CSS_SELECTOR, ".input-group-btn")
-
+    OFFER_TYPE = (By.CLASS_NAME, 'basket-discount')
 class BooksPageLocators:
     BOOK_TO_ADD = (By.LINK_TEXT, "Hacking Exposed Wireless")
 
