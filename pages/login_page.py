@@ -29,7 +29,6 @@ class LoginPage(BasePage):
     def go_to_login_page(self):
         link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
         link.click()
-        # return LoginPage(browser=self.browser, url=self.browser.current_url)
 
     def register_new_user(self, email, password):
         input_email = self.browser.find_element(*LoginPageLocators.INPUT_EMAIL_FOR_REGISTRATION)

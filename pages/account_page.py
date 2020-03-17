@@ -1,23 +1,19 @@
 import random
-
-from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from pages.base_page import BasePage
 from selenium.webdriver.support.ui import Select
 from .locators import AccountPageLocators
-
 
 class AccountPage(BasePage):
     def go_to_address_book(self):
         adr_book = self.browser.find_element(*AccountPageLocators.ADDRESS_BOOK)
         adr_book.click()
 
-    def add_new_address(self):
+    def add_new_address(self):   # this test sometimes fails due to fast scroll, don't know how to fix yet
         pagedown = self.browser.find_element(*AccountPageLocators.HTML)
         pagedown.send_keys(Keys.END)
         add_new_address_button = self.browser.find_element(*AccountPageLocators.ADDRESS_ADD_BTN)
         add_new_address_button.click()
-
         Select(self.browser.find_element(*AccountPageLocators.TITLE)).select_by_value("Mr")
         self.browser.find_element(*AccountPageLocators.FIRST_NAME).send_keys("Иван")
         self.browser.find_element(*AccountPageLocators.LAST_NAME).send_keys("Иванов")

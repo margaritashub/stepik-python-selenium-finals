@@ -11,7 +11,7 @@ class BasketPage(BasePage):
         assert self.browser.is_not_element_present(*BasketPageLocators.GOODS_IN_BASKET)
 
     def should_be_msg_basket_is_empty(self):
-        assert self.browser.find_element(*BasketPageLocators.BASKET_IS_EMPTY)
+        assert self.get_text(*BasketPageLocators.BASKET_IS_EMPTY).find("is empty") > 0, "basket is not empty"
 
 
     def set_goods_amount(self, quantity):

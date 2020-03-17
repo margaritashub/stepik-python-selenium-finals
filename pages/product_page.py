@@ -15,9 +15,7 @@ class ProductPage(BasePage):
         self.should_be_price()
         self.should_be_description()
         self.should_be_add_button()
-
         self.add_product_to_basket()
-
         self.should_be_success()
         self.check_success_message()
 
@@ -25,7 +23,7 @@ class ProductPage(BasePage):
         btn = self.browser.find_element(*ProductPageLocators.BTN_ADD_TO_BASKET)
         btn.click()
 
-    def is_disappered_success_message(self):
+    def is_disappeared_success_message(self):
         assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGES), "Wrong show success message"
 
     def should_be_name(self):
@@ -79,6 +77,3 @@ class ProductPage(BasePage):
 
     def should_be_review_success_message(self):
         assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGES)
-
-    def should_be_normal_site_offer_alert(self):
-        assert self.is_element_present()

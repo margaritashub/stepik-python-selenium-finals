@@ -38,7 +38,7 @@ class BasePageLocators():
 class BasketPageLocators:
 
     GOODS_IN_BASKET = (By.CSS_SELECTOR, "#content_inner div.basket-title div.row")
-    BASKET_IS_EMPTY = (By.CSS_SELECTOR, "#content_inner p")
+    BASKET_IS_EMPTY = (By.XPATH, "//p[contains(text(), 'empty')]")
     QTY_INPUT = (By.NAME, "form-0-quantity")
     QTY_BTN = (By.CSS_SELECTOR, ".input-group-btn")
     OFFER_TYPE = (By.CLASS_NAME, 'basket-discount')

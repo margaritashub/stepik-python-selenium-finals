@@ -4,7 +4,6 @@ from pages.books_page import BooksPage
 from pages.main_page import MainPage
 from pages.login_page import LoginPage
 import pytest
-
 from pages.product_page import ProductPage
 
 
@@ -15,6 +14,7 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     page.go_to_basket()
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.should_be_empty_basket()
+
 
 @pytest.mark.login_guest
 class TestLoginFromMainPage():
@@ -33,23 +33,7 @@ class TestLoginFromMainPage():
         login_page.should_be_login_page()
 
 
-# @pytest.mark.need_review_custom_scenarios
-def test_guest_can_add_books_to_basket_and_delete(browser):
-    link = "http://selenium1py.pythonanywhere.com/"
-    page = MainPage(browser, link)
-    page.open()
-    page.go_to_books_catalogue()
-    books_page = BooksPage(browser, browser.current_url)
-    books_page.move_to_book_page()
-    product_page = ProductPage(browser, browser.current_url)
-    product_page.add_product_to_basket()
-    product_page.should_be_success()
-    product_page.go_to_basket()
-    basket_page = BasketPage(browser, browser.current_url)
-    basket_page.set_goods_amount(0)
-    basket_page.should_be_msg_basket_is_empty()
-
-@pytest.mark.need_review_custom_scenarios3
+@pytest.mark.need_review_custom_scenarios
 def test_user_can_add_address(browser):
     link = "http://selenium1py.pythonanywhere.com/"
     page = MainPage(browser, link)
@@ -65,18 +49,29 @@ def test_user_can_add_address(browser):
     acc_page.add_new_address()
     acc_page.check_success_message()
     acc_page.logout()
-@pytest.mark.need_review_custom_scenarios4
-def test_normal_site_offer(browser):
-    link = "http://selenium1py.pythonanywhere.com/"
-    page = MainPage(browser, link)
-    page.open()
-    page.go_to_books_catalogue()
-    books_page = BooksPage(browser, browser.current_url)
-    books_page.move_to_book_page()
-    product_page = ProductPage(browser, browser.current_url)
-    product_page.add_product_to_basket()
-    product_page.should_be_success()
-    product_page.go_to_basket()
-    basket_page = BasketPage(browser, browser.current_url)
-    basket_page.set_goods_amount(3)
-    basket_page.normal_site_offer_assert()
+
+
+@pytest.mark.need_review_custom_scenarios
+class TestManipulationsWithProductsInBasket():
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/"
+        page = MainPage(browser, link)
+        page.open()
+        page.go_to_books_catalogue()
+        books_page = BooksPage(browser, browser.current_url)
+        books_page.move_to_book_page()
+        product_page = ProductPage(browser, browser.current_url)
+        product_page.add_product_to_basket()
+        product_page.should_be_success()
+        product_page.go_to_basket()
+
+    def test_normal_site_offer(self, browser):
+        basket_page = BasketPage(browser, browser.current_url)
+        basket_page.set_goods_amount(3)
+        basket_page.normal_site_offer_assert()
+
+    def test_guest_can_add_books_to_basket_and_delete(self, browser):
+        basket_page = BasketPage(browser, browser.current_url)
+        basket_page.set_goods_amount(0)
+        basket_page.should_be_msg_basket_is_empty()
